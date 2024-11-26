@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Pedido</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!--la tarjeta-->
+            <div class="card-body">
+            <form action="/editarCliente/" method="POST"> {% csrf_token %} <!-- falta action-->
+            <div class="form-group">
+                <input type="text" id="cli" name="cli" class="form-control"  
+                value="{{misclientes.id_cliente}}" minlength="1" maxlength="6" required><br>
+              </div>
+              <div class="form-group  py-2">
+                <input type="text" id="nom" name="nom" class="form-control"
+                value="{{misclientes.nombre}}" placeh minlength="1" maxlength="100" required><br>
+              </div>
+              <div class="form-group  py-2">
+                <input type="text" id="tel" name="tel" class="form-control"
+                value="{{misclientes.telefono}}" minlength="1" maxlength="100" required><br>
+              </div>
+              <div class="form-group  py-2">
+                <input type="text" id="dir" name="dir" class="form-control"
+                value="{{misclientes.direccion}}" minlength="1" maxlength="100" required><br>
+              </div>
+              <div class="form-group  py-2">
+                <input type="date" id="reg" name="reg" class="form-control"
+                value="{{misclientes.fecha}}"  required><br>
+              </div>
+            <div class="form-group  py-2">
+              <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+            </div>
+          </form>
+            </div>
+          </div><!--la tarjeta-->
+         <!-- Aqui codigo tarjeta -->
+    </div>
+</div> <!--fila en editar-->
+{% endblock %}
