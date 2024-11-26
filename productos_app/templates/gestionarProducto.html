@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+{%load static%}
+<div class="row"><!--la fila-->
+<div class="col-sm-12 col-md-4 col-lg-4 xl-4"> <!--la columna izq-->
+    <h1>Agregar</h1>
+    <div class="card"><!--la tarjeta-->
+      <div class="card-body">
+      <form action="registrarProducto/" method="POST"> {% csrf_token %}<!-- falta action-->
+      <div class="form-group">
+        <input type="text" id="idp" name="idp" class="form-control"  
+        placeholder="id producto" minlength="1" maxlength="6" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="precio" name="precio" class="form-control"
+          placeholder="precio" minlength="1" maxlength="100" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="stock" name="stock" class="form-control"
+          placeholder="stock" minlength="1" maxlength="100" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="desc" name="desc" class="form-control"
+          placeholder="descripcion" minlength="1" maxlength="100" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="tipo" name="tipo" class="form-control"
+          placeholder="tipo"  required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="cate" name="cate" class="form-control"
+          placeholder="categoria"  required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="nombre" name="nombre" class="form-control"
+        placeholder="nombre producto" minlength="1" maxlength="100" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="prov" name="prov" class="form-control"
+        placeholder="id proveedor" minlength="1" maxlength="100" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="suc" name="suc" class="form-control"
+        placeholder=" sucursal" minlength="1" maxlength="100" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <button type="submit" class="btn btn-primary">Guardar Producto</button>
+      </div>
+    </form>
+      </div>
+    </div><!--la tarjeta-->
+</div><!--la columna izq-->
+
+<div class="col-sm-12 col-md-8 col-lg-8 xl-8"> <!--la columna der-->
+    <h1>Listado de Productos</h1>
+    <img  class="w-50"src="{% static 'img/R.jpeg' %}" alt="" width="100" height="300">
+    <br> <br>
+    <!-- la tabla-->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">id producto</th>
+            <th scope="col">precio</th>
+            <th scope="col">stock</th>
+            <th scope="col">descripcion</th>
+            <th scope="col"> tipo</th>
+            <th scope="col"> categoria</th>
+            <th scope="col">nombre</th>
+            <th scope="col"> proveedor </th>
+            <th scope="col">sucursal  </th>
+            <th >opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+         {% for m in misproductos   %}
+         <tr>
+          <td>
+            {{forloop.counter}}
+          </td>
+          <td>
+            {{m.id_prod}}
+          </td>
+          <td>
+            {{m.precio}}
+          </td>
+          <td>
+            {{m.stock}}
+          </td>
+          <td>
+            {{m.descripcion}}
+          </td>
+          <td>
+            {{m.tipo}}
+          </td>
+          <td>
+            {{m.categoria}}
+          </td>
+          <td>
+            {{m.nombre}}
+          </td>
+          <td>
+            {{m.id_prov}}
+          </td>
+          <td>
+            {{m.id_suc}}
+          </td>
+         
+          <td> <a href="seleccionarProducto/{{m.id_prod}}" class="btn btn-info "> Editar</a></td><!--falta-->
+          <td> <a href="borrarProducto/{{m.id_prod}}" class="btn btn-danger "> Borrar</a></td><!--falta-->
+        </tr>
+         {% endfor %}
+        
+        
+        </tbody>
+      </table>
+    <!-- la tabla-->
+</div><!--la columna der-->
+</div><!--la fila-->
+{% endblock %}

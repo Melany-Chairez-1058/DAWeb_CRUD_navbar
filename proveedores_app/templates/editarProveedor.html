@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"><!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Empleado</h2>
+        <!-- Aqui codigo tarjeta -->
+        <div class="card"><!--la tarjeta-->
+            <div class="card-body">
+            <form action="/editarProveedor/" method="POST"> {% csrf_token %} <!-- falta action-->
+            <div class="form-group">
+                <input type="text" id="pr" name="pr" class="form-control"  
+               value="{{misproveedores.id_pr}}" minlength="1" maxlength="6" required><br>
+              </div>
+              <div class="form-group  py-2">
+                <input type="text" id="nom" name="nom" class="form-control"
+                value="{{misproveedores.nom}}" minlength="1" maxlength="100" required><br>
+              </div>
+              <div class="form-group  py-2">
+                <input type="tel" id="tel" name="tel" class="form-control"
+                value="{{misproveedores.tel}}" minlength="1" maxlength="100" required><br>
+              </div>
+              <div class="form-group  py-2">
+                <input type="email" id="cor" name="cor" class="form-control"
+                value="{{misproveedores.cor}}"  required><br>
+              </div>
+              <div class="form-group  py-2">
+                <input type="text" id="dir" name="dir" class="form-control"
+                value="{{misproveedores.dir}}" minlength="1" maxlength="100" required><br>
+              </div>
+              <div class="form-group  py-2">
+                <input type="number" id="st" name="st" class="form-control"
+                value="{{misproveedores.stock}}" required><br>
+              </div>
+              
+              <div class="form-group  py-2">
+                <input type="number" id="cal" name="cal" class="form-control"
+                value="{{misproveedores.cal}}"  required><br>
+              </div>
+             <div class="form-group  py-2">
+              <button type="submit" class="btn btn-primary">Guardar Empleado</button>
+            </div>
+          </form>
+            </div>
+          </div><!--la tarjeta-->
+         <!-- Aqui codigo tarjeta -->
+    </div>
+</div> <!--fila en editar-->
+{% endblock %}
