@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+{%load static%}
+<div class="row"><!--la fila-->
+<div class="col-sm-12 col-md-4 col-lg-4 xl-4"> <!--la columna izq-->
+    <h1>Agregar</h1>
+    <div class="card"><!--la tarjeta-->
+      <div class="card-body">
+      <form action="registrarEmpleado/" method="POST"> {% csrf_token %}<!-- falta action-->
+      <div class="form-group">
+        <input type="text" id="em" name="em" class="form-control"  
+        placeholder="id Empleado" minlength="1" maxlength="6" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="nom" name="nom" class="form-control"
+          placeholder="nombre " minlength="1" maxlength="100" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="text" id="pues" name="pues" class="form-control"
+          placeholder="puesto" minlength="1" maxlength="100" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="tel" id="tel" name="tel" class="form-control"
+          placeholder="telefono " minlength="1" maxlength="100" required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="email" id="cor" name="cor" class="form-control"
+          placeholder="correo"  required><br>
+      </div>
+      <div class="form-group  py-2">
+        <input type="date" id="cont" name="cont" class="form-control"
+          placeholder="fecha de contratacion"  required><br>
+      </div>
+      
+      <div class="form-group  py-2">
+        <input type="text" id="sal" name="sal" class="form-control"
+          placeholder="salario"  required><br>
+      </div>
+      <div class="form-group  py-2">
+        <button type="submit" class="btn btn-primary">Guardar Empleado</button>
+      </div>
+    </form>
+      </div>
+    </div><!--la tarjeta-->
+</div><!--la columna izq-->
+
+<div class="col-sm-12 col-md-8 col-lg-8 xl-8"> <!--la columna der-->
+    <h1>Listado de Empleados</h1>
+    <img  class="w-50"src="{% static 'img/emp.jpg' %}" alt="" width="100" height="200">
+    <br> <br>
+    <!-- la tabla-->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">id empleado</th>
+            <th scope="col">nombre</th>
+            <th scope="col">puesto</th>
+            <th scope="col">telefono</th>
+            <th scope="col">correo</th>
+            <th scope="col">fecha contrato</th>
+            <th scope="col">salario</th>
+            
+            <th >opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+         {% for m in misempleados   %}
+         <tr>
+          <td>
+            {{forloop.counter}}
+          </td>
+          <td>
+            {{m.id_emp}}
+          </td>
+          <td>
+            {{m.nombre}}
+          </td>
+          <td>
+            {{m.puesto}}
+          </td>
+          <td>
+            {{m.tel}}
+          </td>
+          <td>
+            {{m.correo}}
+          </td>
+          <td>
+            {{m.fecha_contrato | date:'d-m-y'}}
+          </td>
+          <td>
+            {{m.salario}}
+          </td>
+          <td> <a href="seleccionarEmpleado/{{m.id_emp}}" class="btn btn-info "> Editar</a></td><!--falta-->
+          <td> <a href="borrarEmpleado/{{m.id_emp}}" class="btn btn-danger "> Borrar</a></td><!--falta-->
+        </tr>
+         {% endfor %}
+        
+        
+        </tbody>
+      </table>
+    <!-- la tabla-->
+</div><!--la columna der-->
+</div><!--la fila-->
+{% endblock %}
